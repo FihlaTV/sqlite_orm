@@ -4,7 +4,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(sqlite_orm)
 
-option(SqliteOrm_BuildTests "Build sqlite_orm unit tests" ON)
+option(SqliteOrm_BuildTests "Build sqlite_orm unit tests" OFF)
+option(SqliteOrm_BuildExamples "Build sqlite_orm examples" OFF)
 
 set(SqliteOrm_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 add_library(sqlite_orm INTERFACE)
@@ -17,5 +18,7 @@ if(SqliteOrm_BuildTests AND BUILD_TESTING)
     add_subdirectory(tests)
 endif()
 
-add_subdirectory(examples)
+if (SqliteOrm_BuildExamples)
+	add_subdirectory(examples)
+endif()
 
